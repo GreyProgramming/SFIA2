@@ -4,12 +4,15 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import Users
 
+class LoginButton(FlaskForm):
+	submit = SubmitField('Login Page')
+
 class PostForm(FlaskForm):
 	title = StringField('Title',
 		validators = [
 			DataRequired(),
 			Length(min=2, max=100)
-		]
+		],
 	)
 	content = StringField('Content',
 		validators = [
@@ -54,7 +57,7 @@ class RegistrationForm(FlaskForm):
 		user = Users.query.filter_by(email=email.data).first()
 
 		if user:
-			raise ValidatorError('That email is already in use, my dude.')
+			raise ValidationError('That email is already in use, my dude.')
 
 class LoginForm(FlaskForm):
 	email = StringField('Email',
