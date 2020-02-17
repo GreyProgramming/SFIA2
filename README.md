@@ -1,5 +1,5 @@
 # Prideinyourself.com
-V1.0
+V1.1
 
 ## The brief
 
@@ -58,3 +58,11 @@ https://trello.com/b/wRzLUNag/prideinyourselfcom
 ### Future possibilities
 Lesson Plans - "Like for schools to use, if you make it user friendly teachers would use that kind of thing for gay pride month as it's on the curriculum" - C.L-C
 Promotion via content creators by hosting links to their work - pivot with stonewall & unions.
+
+
+### Change Log
+
+17/02/2020 
+Changed the layout.html for better visuals.
+created a new footer linking to linkedin.
+url now points to VM when running: http://prideinyourself.com:5000/home
