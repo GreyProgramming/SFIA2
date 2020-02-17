@@ -64,5 +64,6 @@ Promotion via content creators by hosting links to their work - pivot with stone
 
 17/02/2020 
 Changed the layout.html for better visuals.
-created a new footer linking to linkedin.
-url now points to VM when running: http://prideinyourself.com:5000/home
+Created a new footer linking to linkedin.
+Url now points to VM when running: http://prideinyourself.com:5000/home
+Noted need to change the CSS as the CSS link provided by Bob is not able to create the visuals wanted.
