@@ -6,11 +6,13 @@ from flask_testing import TestCase
 from application import app, db
 from application.models import Users, Posts
 
+from os import getenv
+
 class TestBase(TestCase):
 	def create_app(self):
 		config_name = 'testing'				#pass in config for test db
-		app.config.update(
-			SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:1Che4Mis0Try1!@35.189.121.243/flaskapp')
+		app.config['SQLALCHEMY_DATABASE_URI'] = str(getenv('TEST_DATABASE'))
+		app.config['SECRET_KEY'] = getenv('SKEY')
 		return app
 
 	def setUp(self):					#Called before every test

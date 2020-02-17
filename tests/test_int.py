@@ -24,8 +24,13 @@ class TestBase(LSTC):
 	def setUp(self):												#Set up test driver + create next user
 		print("----------Next-Test----------")
 		chrome_options = Options()
-		chrome_options.binary_locatin = "/usr/bin/google-chrome-stable"
+		chrome_options.binary_location = "/usr/bin/google-chrome-stable"
 		chrome_options.add_argument("--headless")
+		chrome_options.add_argument("--no-sandbox")
+		chrome_options.add_argument("disable-gpu")
+		chrome_options.add_argument("window-size=1920,1080")
+		chrome_options.add_argument("disable-dev-shm-usage")
+		chrome_options.add_argument("disable-features=VizDisplayCompositor")
 		self.driver = webdriver.Chrome(executable_path="/home/morgangreyprofessional/flask-app/chromedriver", chrome_options=chrome_options)
 		self.driver.get("http://localhost:5000")
 		db.session.commit()
