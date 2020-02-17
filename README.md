@@ -57,7 +57,7 @@ https://trello.com/b/wRzLUNag/prideinyourselfcom
 
 ### Future possibilities
 Lesson Plans - "Like for schools to use, if you make it user friendly teachers would use that kind of thing for gay pride month as it's on the curriculum" - C.L-C
-Promotion via content creators by hosting links to their work - pivot with stonewall & unions.
+Promotion via content creators by hosting links to their work - pivot with stonewall, podcasts & unions.
 
 
 ### Change Log
@@ -66,4 +66,7 @@ Promotion via content creators by hosting links to their work - pivot with stone
 Changed the layout.html for better visuals.
 Created a new footer linking to linkedin.
 Url now points to VM when running: http://prideinyourself.com:5000/home
+
 Noted need to change the CSS as the CSS link provided by Bob is not able to create the visuals wanted.
+Need to check whether there is a print function in the home page as it is printing in the console whenever loaded.
+Need to alter users table for admin column + allow admins to delete posts from users as they are actioned.
