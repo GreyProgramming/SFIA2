@@ -12,7 +12,8 @@ from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccou
 @app.route('/home')
 def home():
 	postData = Posts.query.all()
-	return render_template('home.html', title='Home', posts=postData)
+	print(postData)
+	return render_template('home.html', title='Home', posts=reversed(postData))
 
 @app.route('/about')
 def about():
@@ -102,4 +103,22 @@ def post():
 		return redirect(url_for('home'))
 	else:
 			print(form.errors)
+	return render_template('post.html', title = 'Post', form=form)
+
+@app.route("/<name>", methods=['GET', 'POST'])
+@login_required
+def user(name):
+	form = PostForm()
+	form.title.data = name
+	if form.validate_on_submit():
+		postData = Posts(
+			title = form.title.data,
+	        	content = form.content.data,
+	        	author = current_user
+		)
+		db.session.add(postData)
+		db.session.commit()
+		return redirect(url_for('home'))
+	else:
+		print(form.errors)
 	return render_template('post.html', title = 'Post', form=form)

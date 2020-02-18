@@ -1,4 +1,17 @@
+
 {% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<style type="text/css">
+	.important { color: #336699; }
+	</style>
+{% endblock %}
+
 {% block body_content %}
-        return "About page"
+	<h1>About us</h1>
+	<p class="important">Welcome!</p>
+	<p>Pride in yourself is hoping to be a web based resource housing stories about historical LGBTQ people.</p>
 {% endblock %}

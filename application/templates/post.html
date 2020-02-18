@@ -1,22 +1,26 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<p>Have a page you would like to see added? Or a functionality that is missing? Just want to leave your mark? Well, this is the place for it, buddy:</p> 
 <div class="form">
 	<form method="POST"
 	action="">
 		{{ form.hidden_tag() }}
-		{{ form.title.label }}
-		{{ form.title }}
-                {% if form.title.errors %}
+                <div class="row">
+                        <div class="col-sm-2">{{ form.title.label }}</div>
+			<div class="col-sm-3">{{ form.title }}</div>
+                </div>
+		{% if form.title.errors %}
                         <div class="error">
                                 {% for error in form.title.errors %}
                                         <span>{{ error }}</span>
                                 {% endfor %}
                         </div>
                 {% endif %}
-		<br>
-		{{ form.content.label }}
-		{{ form.content }}
-                {% if form.content.errors %}
+                <div class="row">
+                        <div class="col-sm-2">{{ form.content.label }}</div>
+			<div class="col-sm-10">{{ form.content }}</div>
+                </div>
+		{% if form.content.errors %}
                         <div class="error">
                                 {% for error in form.content.errors %}
                                         <span>{{ error }}</span>
