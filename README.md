@@ -60,7 +60,11 @@ Lesson Plans - "Like for schools to use, if you make it user friendly teachers w
 Promotion via content creators by hosting links to their work - pivot with stonewall, podcasts & unions.
 
 
-### Change Log
+### Update Log
+
+18/02/2020
+Users able to create account, read their name and email, update those details and delete their account. MVP attained.
+Progress branch pulled to master.
 
 17/02/2020 
 Changed the layout.html for better visuals.
