@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 
 from application import app, db, bcrypt
-from application.models import Posts, Users
+from application.models import Posts, Users, Content
 from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
 
 
@@ -105,22 +105,35 @@ def post():
 	return render_template('post.html', title = 'Post', form=form)
 
 @app.route("/<name>", methods=['GET', 'POST'])
-def content_return(name):
-	
-
 def user(name):
-	if current_user.is_authenticated:
-		form = PostForm()
-		form.title.data = name
-		if form.validate_on_submit():
-			postData = Posts(
-				title = form.title.data,
-				content = form.content.data,
-				author = current_user
-			)
-			db.session.add(postData)
-			db.session.commit()
-			return redirect(url_for('home'))
+	search = "%{}%".format(name)
+	RM = Content.query.filter(Content.rolemodel.like(search)).first()
+	if not RM:
+		if current_user.is_authenticated:
+			form = PostForm()
+			form.title.data = name
+			if form.validate_on_submit():
+				postData = Posts(
+					title = form.title.data,
+					content = form.content.data,
+					author = current_user
+				)
+				db.session.add(postData)
+				db.session.commit()
+				return redirect(url_for('home'))
+			else:
+				print(form.errors)
 		else:
-			print(form.errors)
-		return render_template('post.html', title = 'Post', form=form)
+			return redirect(url_for('login'))
+
+	else:
+		return redirect(url_for('view', id=RM.c_id))
+
+@app.route("/viewer/<id>")
+def view(id):
+	RM = Content.query.filter_by(c_id=id).first()
+	if RM:
+		print(RM.rolemodel)
+		return render_template('viewer.html', RM=RM)
+	else:
+		return redirect(url_for('post'))

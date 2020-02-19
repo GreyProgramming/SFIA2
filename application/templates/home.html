@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-        <h1>Home</h1>
         <p>Welcome to this web app!</p>
 	<br>
 	<p><h2>Recent suggestions by users:</h2></p>
-        {% for post in posts %}
+	{% for post in posts %}
                 <div>
 			<h3>{{ post.title }}</h3>
 			<span>Suggested by <i>{{ post.author.first_name }} {{ post.author.last_name }}</i></span>

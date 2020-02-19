@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<p>Have a page you would like to see added? Or a functionality that is missing? Just want to leave your mark? Well, this is the place for it, buddy:</p> 
 <div class="form">
-	<form method="POST"
-	action="">
+	<form method="POST" action="">
 		{{ form.hidden_tag() }}
                 <div class="row">
                         <div class="col-sm-2">{{ form.title.label }}</div>

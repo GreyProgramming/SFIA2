@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body_content %}
-        <h1>Account Page</h1>
         <p>Hello {{ current_user.first_name }} {{current_user.last_name }}.</p>
 	<p>Please feel free to update your details below:</p>
         <div class='form'>
                 <form method='Post' action=''>
                         {{ form.hidden_tag() }}
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.first_name.label }}</div>
@@ -19,6 +19,7 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.last_name.label }}</div>
@@ -32,6 +33,7 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.email.label }}</div>
@@ -45,6 +47,7 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <br>
                         <div class='form_group'>
 				{{ form.submit }}

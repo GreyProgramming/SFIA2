@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body_content %}
+{% if RM %}
+	<div class="row">
+		<div class="col-md-3"><h1>Name :</h1></div>
+		<div class="col-md-9"><h3>{{ RM.rolemodel }}</h3></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"><h1>Story :</h1></div>
+		<div class="col-md-9"><h3>{{ RM.history }}</h3></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"><h1>Further resources :</h1></div>
+		<div class="col-md-9"><h3>{{ RM.resources }}</h3></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"><h1>Pictures :</h1></div>
+		<div class="col-md-9"><h3>{{ RM.pictures }}</h3></div>
+	</div>
+{% endif %}
+	<p>Want to suggest some more content for this page? Why not visit the <a href="post.html">post page</a>?</p>
+
+
+{% endblock body_content %}
