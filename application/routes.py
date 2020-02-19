@@ -59,6 +59,7 @@ def login():
 @login_required
 def account():
 	form = UpdateAccountForm()
+	posts = Posts.query.filter_by(user_id=current_user.id).all()
 	if form.validate_on_submit():
 		current_user.first_name = form.first_name.data
 		current_user.last_name = form.last_name.data
@@ -69,7 +70,7 @@ def account():
 		form.first_name.data = current_user.first_name
 		form.last_name.data = current_user.last_name
 		form.email.data = current_user.email
-	return render_template('account.html', title='Account', form=form)
+	return render_template('account.html', title='Account', form=form, posts=posts)
 
 @app.route('/account/delete', methods=['GET', 'POST'])
 @login_required
@@ -80,6 +81,32 @@ def account_delete():
 	db.session.delete(account)
 	db.session.commit()
 	return redirect(url_for('register'))
+
+@app.route("/viewer/<id>")
+def view(id):
+        RM = Content.query.filter_by(c_id=id).first()
+        if RM:
+                print(RM.rolemodel)
+                return render_template('viewer.html', RM=RM)
+        else:
+                return redirect(url_for('post'))
+
+@app.route("/update/<id>", methods=['GET', 'POST'])
+def postupd(id):
+	UDP = Posts.query.filter_by(id=id).first()
+	form = PostForm()
+	if UDP.user_id == current_user.id:
+#		post = Posts.query.filter_by(UDP.id).all()
+		if form.validate_on_submit():
+			UDP.title = form.title.data
+			UDP.content = form.content.data
+			db.session.add(UDP)
+			db.session.commit()
+			return redirect(url_for('account'))
+		form.title.data = UDP.title
+		form.content.data = UDP.content
+		return render_template('post.html', title="Update Post", form=form)
+	return "That's not your post"
 
 @app.route('/logout')
 @login_required
@@ -128,12 +155,3 @@ def user(name):
 
 	else:
 		return redirect(url_for('view', id=RM.c_id))
-
-@app.route("/viewer/<id>")
-def view(id):
-	RM = Content.query.filter_by(c_id=id).first()
-	if RM:
-		print(RM.rolemodel)
-		return render_template('viewer.html', RM=RM)
-	else:
-		return redirect(url_for('post'))
