@@ -53,28 +53,26 @@
                         <div class='form_group'>
 				{{ form.submit }}
                         </div>
-			<form action={{ url_for('account_delete') }}">
-				<button type="submit">Delete</button>
-			</form>
-			<div class='form_group'>
-				{{ form.delete }}
-			</div>
-
-			<br>
-
-			<div class="container">
-				<h3>Your posts:</h3>
-				{% for post in posts %}
-					{% if post.user_id == current_user.id %}
-						<h3>Post ID:{{ post.id }} - {{ post.title }}</h3>
-						<span>Suggested by you on the <i>{{ post.date_posted }}</i></span>
-						<p>{{ post.content }}</p>
-                                                <p><a href="{{ url_for('postupd', id=post.id) }}">Update</a></p>
-					{% else %}
-						<p>No posts yet.</p>
-					{% endif %}
-				{% endfor %}
-			</div>
-                </form>
+		</form>
+		<form action="{{ url_for('account_delete') }}">
+			<button type="submit">Delete</button>
+		</form>
+		<div class='form_group'>
+			{{ form.delete }}
+		</div>
+		<br>
+		<div class="container">
+			<h3>Your posts:</h3>
+			{% for post in posts %}
+				{% if post.user_id == current_user.id %}
+					<h3>Post ID:{{ post.id }} - {{ post.title }}</h3>
+					<span>Suggested by you on the <i>{{ post.date_posted }}</i></span>
+					<p>{{ post.content }}</p>
+                                               <p><a href="{{ url_for('postupd', id=post.id) }}">Update</a></p>
+				{% else %}
+					<p>No posts yet.</p>
+				{% endif %}
+			{% endfor %}
+		</div>
         </div>
 {% endblock %}

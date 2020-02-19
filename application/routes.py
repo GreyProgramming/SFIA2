@@ -77,6 +77,9 @@ def account():
 def account_delete():
 	user = current_user.id
 	account = Users.query.filter_by(id=user).first()
+	posts = Posts.query.filter_by(user_id=user).all()
+	for post in posts:
+		db.session.delete(post)
 	logout_user()
 	db.session.delete(account)
 	db.session.commit()
@@ -105,8 +108,16 @@ def postupd(id):
 			return redirect(url_for('account'))
 		form.title.data = UDP.title
 		form.content.data = UDP.content
-		return render_template('post.html', title="Update Post", form=form)
+		return render_template('updates.html', title="Update Post", form=form, post=UDP)
 	return "That's not your post"
+
+@app.route("/update/delete/<id>", methods=['GET', 'POST'])
+@login_required
+def postdel(id):
+	post = Posts.query.filter_by(id=id).first()
+	db.session.delete(post)
+	db.session.commit()
+	return redirect(url_for('account'))
 
 @app.route('/logout')
 @login_required
