@@ -6,8 +6,6 @@ from application.models import Posts, Users, Content
 from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
 
 
-
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -17,7 +15,6 @@ def home():
 @app.route('/about')
 def about():
 	return render_template('about.html', title='About')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -99,7 +96,6 @@ def postupd(id):
 	UDP = Posts.query.filter_by(id=id).first()
 	form = PostForm()
 	if UDP.user_id == current_user.id:
-#		post = Posts.query.filter_by(UDP.id).all()
 		if form.validate_on_submit():
 			UDP.title = form.title.data
 			UDP.content = form.content.data

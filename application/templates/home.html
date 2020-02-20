@@ -1,15 +1,19 @@
 {% extends "layout.html" %}
 {% block body_content %}
-
-        <p>Welcome to this web app!</p>
-	<br>
+<div class="content">
+        <p>Welcome to this web app! Pride in yourself is about being able to find historical role models who were LGBTQ+.</p>
+	<p>-This is of course viewed through a modern perspective - historical context is often important, and of course all history is subjective to interpretation.-</p> 
+</div>
+<div class="content">
 	<p><h2>Recent suggestions by users:</h2></p>
 	{% for post in posts %}
-                <div>
+                <div class="container">
 			<h3>{{ post.title }}</h3>
 			<span>Suggested by <i>{{ post.author.first_name }} {{ post.author.last_name }}</i></span>
 			<span>on the <i>{{ post.date_posted }}</i></span>
                         <p>{{ post.content }}</p>
                 </div>
+		<br>
 	{% endfor %}
+</div>
 {% endblock %}

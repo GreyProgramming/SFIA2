@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block body_content %}
-	<h1>Register Page</h1>
-	<p>This is the page where you can sign up</p>
+<div class="container2">
+	<p>Sign up so that you can suggest edits and request new content.</p>
 	<div class='form'>
 		<form method='Post' action=''>
 			{{ form.hidden_tag() }}
 			<div class='form_group'>
 				<div class="row">
-					<div class="col-sm-2">{{ form.first_name.label }}</div>
-					<div class="col-sm-3">{{ form.first_name }}</div>
+					<div class="col-lg-2">{{ form.first_name.label }}</div>
+					<div class="col-lg-2">{{ form.first_name }}</div>
 				</div>
 				{% if form.first_name.errors %}
 					<div class='error'>
@@ -76,4 +76,5 @@
                         </div>
                 </form>
         </div>
+</div>
 {% endblock %}
