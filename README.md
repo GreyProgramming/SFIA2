@@ -42,11 +42,11 @@ https://docs.google.com/spreadsheets/d/12DpUkGZ0152ZuV0DZSnLNX3tmoqrbppeXTm1YRkp
 17/02/2020 - Numerous system crashes including both chrome and BSODs.
 https://drive.google.com/file/d/1A9-sd0B1qiLT1Zj9ty1mQqaGHmKYDdgI/view?usp=sharing
 
-## Stakeholder analysis
+<!-- ## Stakeholder analysis
 
 The stakeholder analysis document is available at:
 https://docs.google.com/document/d/11yscW6LF6Znjg37G4HJLpUCfrppOapm-UVRhJOHsnOI/edit?usp=sharing
-
+-->
 ## ERD
 
 The ERD was created using draw.io is available at:
