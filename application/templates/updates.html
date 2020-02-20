@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body_content %}
+	<h2><p>Hello {{ current_user.first_name }} {{current_user.last_name }}.</p></h2>
+	<p>Please update your suggestion below:</p>
+	<div class='form'>
+		<form method='Post' action=''>
+			{{ form.hidden_tag() }}
+
+			<div class='form_group'>
+				<div class="row">
+					<div class="col-md-2">{{ form.title.label }}</div>
+					<div class="col-md-3">{{ form.title }}</div>
+				</div>
+				{% if form.title.errors %}
+					<div class='error'>
+						{% for error in form.title.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+
+			<div class='form_group'>
+				<div class="row">
+					<div class="col-sm-2">{{ form.content.label }}</div>
+					<div class="col-lg-3">{{ form.content }}</div>
+				</div>
+				{% if form.content.errors %}
+					<div class='error'>
+						{% for error in form.content.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+			<br>
+			<div class='form_group'>
+				{{ form.submit }}
+			</div>
+eifgvbwiriugiwebhriuwbfigbweirugbwieurgiewbhr
+		</form>
+	</div>
+	<div class="form">
+		<form method="Post" action="{{ url_for('postdel', id=post.id) }}">
+			<button type="submit">Delete</button>
+		</form>
+	</div>
+	edbfwiedbfiwebfi;qewbfi;bqwe;rifb;
+{% endblock %}
+
+

@@ -33,3 +33,10 @@ class Users(db.Model, UserMixin):
 			'Email: ', self.email, '\r\n',
 			'Name: ', self.first_name, ' ', self.last_name
 		])
+
+class Content(db.Model):
+	c_id = db.Column(db.Integer, primary_key=True)
+	rolemodel = db.Column(db.String(50), nullable=False)
+	history = db.Column(db.VARCHAR(10000), nullable = False)
+	resources = db.Column(db.VARCHAR(5000))
+	pictures = db.Column(db.VARCHAR(5000))

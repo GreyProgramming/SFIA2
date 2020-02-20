@@ -1,15 +1,16 @@
 {% extends "layout.html" %}
 {% block body_content %}
-        <h1>Account Page</h1>
-        <p>Hello {{ current_user.first_name }} {{current_user.last_name }}.</p>
+<div class="content">
+        <h2><p>Hello {{ current_user.first_name }} {{current_user.last_name }}.</p></h2>
 	<p>Please feel free to update your details below:</p>
         <div class='form'>
                 <form method='Post' action=''>
                         {{ form.hidden_tag() }}
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.first_name.label }}</div>
-                                	<div class="col-sm-3">{{ form.first_name }}</div>
+                                	<div class="col-md-3">{{ form.first_name }}</div>
                                 </div>
 				{% if form.first_name.errors %}
                                         <div class='error'>
@@ -19,10 +20,11 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.last_name.label }}</div>
-                                	<div class="col-sm-3">{{ form.last_name }}</div>
+                                	<div class="col-lg-3">{{ form.last_name }}</div>
                                 </div>
 				{% if form.last_name.errors %}
                                         <div class='error'>
@@ -32,10 +34,11 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <div class='form_group'>
                                 <div class="row">
                                         <div class="col-sm-2">{{ form.email.label }}</div>
-                                	<div class="col-sm-3">{{ form.email }}</div>
+                                	<div class="col-lg-3">{{ form.email }}</div>
                                 </div>
 				{% if form.email.errors %}
                                         <div class='error'>
@@ -45,16 +48,34 @@
                                         </div>
                                 {% endif %}
                         </div>
+
                         <br>
                         <div class='form_group'>
 				{{ form.submit }}
                         </div>
-			<form action={{ url_for('account_delete') }}">
-				<button type="submit">Delete</button>
-			</form>
-			<div class='form_group'>
-				{{ form.delete }}
-			</div>
-                </form>
-        </div>
+		</form>
+		<form action="{{ url_for('account_delete') }}">
+			<button type="submit">Delete</button>
+		</form>
+		<div class='form_group'>
+			{{ form.delete }}
+		</div>
+	</div>
+<br>
+<h3>Your posts:</h3>
+</div>
+{% for post in posts %}
+	<div class="container2">
+	{% if post.user_id == current_user.id %}
+	<h3>Site-wide post ID:{{ post.id }} - {{ post.title }}</h3>
+	<span>Suggested by you on the <i>{{ post.date_posted }}</i></span>
+	<p>{{ post.content }}</p>
+		<p><a href="{{ url_for('postupd', id=post.id) }}">Update</a></p>
+	<br>
+	{% else %}
+		<p>No posts yet.</p>
+	{% endif %}
+</div>
+{% endfor %}
+
 {% endblock %}

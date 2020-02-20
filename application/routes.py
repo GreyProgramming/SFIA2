@@ -2,23 +2,19 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 
 from application import app, db, bcrypt
-from application.models import Posts, Users
+from application.models import Posts, Users, Content
 from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
-
-
 
 
 @app.route('/')
 @app.route('/home')
 def home():
 	postData = Posts.query.all()
-	print(postData)
 	return render_template('home.html', title='Home', posts=reversed(postData))
 
 @app.route('/about')
 def about():
 	return render_template('about.html', title='About')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -60,6 +56,7 @@ def login():
 @login_required
 def account():
 	form = UpdateAccountForm()
+	posts = Posts.query.filter_by(user_id=current_user.id).all()
 	if form.validate_on_submit():
 		current_user.first_name = form.first_name.data
 		current_user.last_name = form.last_name.data
@@ -70,17 +67,53 @@ def account():
 		form.first_name.data = current_user.first_name
 		form.last_name.data = current_user.last_name
 		form.email.data = current_user.email
-	return render_template('account.html', title='Account', form=form)
+	return render_template('account.html', title='Account', form=form, posts=posts)
 
 @app.route('/account/delete', methods=['GET', 'POST'])
 @login_required
 def account_delete():
 	user = current_user.id
 	account = Users.query.filter_by(id=user).first()
+	posts = Posts.query.filter_by(user_id=user).all()
+	for post in posts:
+		db.session.delete(post)
 	logout_user()
 	db.session.delete(account)
 	db.session.commit()
 	return redirect(url_for('register'))
+
+@app.route("/viewer/<id>")
+def view(id):
+        RM = Content.query.filter_by(c_id=id).first()
+        if RM:
+                print(RM.rolemodel)
+                return render_template('viewer.html', RM=RM)
+        else:
+                return redirect(url_for('post'))
+
+@app.route("/update/<id>", methods=['GET', 'POST'])
+def postupd(id):
+	UDP = Posts.query.filter_by(id=id).first()
+	form = PostForm()
+	if UDP.user_id == current_user.id:
+		if form.validate_on_submit():
+			UDP.title = form.title.data
+			UDP.content = form.content.data
+			db.session.add(UDP)
+			db.session.commit()
+			return redirect(url_for('account'))
+		form.title.data = UDP.title
+		form.content.data = UDP.content
+		return render_template('updates.html', title="Update Post", form=form, post=UDP)
+	return "That's not your post"
+
+@app.route("/update/delete/<id>", methods=['GET', 'POST'])
+@login_required
+def postdel(id):
+	post = Posts.query.filter_by(id=id).first()
+	db.session.delete(post)
+	db.session.commit()
+	return redirect(url_for('account'))
 
 @app.route('/logout')
 @login_required
@@ -106,19 +139,26 @@ def post():
 	return render_template('post.html', title = 'Post', form=form)
 
 @app.route("/<name>", methods=['GET', 'POST'])
-@login_required
 def user(name):
-	form = PostForm()
-	form.title.data = name
-	if form.validate_on_submit():
-		postData = Posts(
-			title = form.title.data,
-	        	content = form.content.data,
-	        	author = current_user
-		)
-		db.session.add(postData)
-		db.session.commit()
-		return redirect(url_for('home'))
+	search = "%{}%".format(name)
+	RM = Content.query.filter(Content.rolemodel.like(search)).first()
+	if not RM:
+		if current_user.is_authenticated:
+			form = PostForm()
+			form.title.data = name
+			if form.validate_on_submit():
+				postData = Posts(
+					title = form.title.data,
+					content = form.content.data,
+					author = current_user
+				)
+				db.session.add(postData)
+				db.session.commit()
+				return redirect(url_for('home'))
+			else:
+				print(form.errors)
+		else:
+			return redirect(url_for('login'))
+
 	else:
-		print(form.errors)
-	return render_template('post.html', title = 'Post', form=form)
+		return redirect(url_for('view', id=RM.c_id))
