@@ -26,6 +26,14 @@ I have been sat on the domain prideinyourself.com for over a year, with a plan t
 
 As such, I plan to create a resource which houses stories about historical LGBTQ+ figures there so that teens are able to quickly and easily find examples of role models.
 
+## The architecture
+
+For this project, I will be running a Virtual Machine (VM) via google cloud platform.
+
+This VM will be running Debian Linux, and from there I will be programming the webpages in html, which will be calling python functionality to talk to SQL.
+
+The programs and python modules used are all stored in <a href="https://github.com/GreyProgramming/flask-app/blob/master/requirements.txt">the requirements.txt doc</a>
+
 ## Risk assessment
 
 The risk assessment document is available at:
