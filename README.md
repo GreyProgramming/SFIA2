@@ -70,6 +70,9 @@ Promotion via content creators by hosting links to their work - pivot with stone
 
 ### Update Log
 
+20/02/2020
+Actual functionality implemented. CSS cleaned up, redundant code removed, functionality manually tested.
+
 18/02/2020
 Users able to create account, read their name and email, update those details and delete their account. MVP attained.
 Progress branch pulled to master.
