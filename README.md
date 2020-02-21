@@ -70,6 +70,11 @@ Promotion via content creators by hosting links to their work - pivot with stone
 
 ### Update Log
 
+21/02/2020
+Port 5000 requirement removed - http://prideinyourself.com
+
+Testing script failing due to chrome driver not being able to read the Xpath. As a result, unable to perform tests and deploy then to Jenkins. 
+
 20/02/2020
 Actual functionality implemented. CSS cleaned up, redundant code removed, functionality manually tested.
 
