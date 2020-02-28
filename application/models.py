@@ -1,8 +1,17 @@
 from application import db, login_manager
 from flask_login import UserMixin
 from datetime import datetime
+import random
 
-#Change to test jenkins
+class Objects(db.Model):
+        Line_ID = db.Column(db.Integer, primary_key=True)
+	Dayjob = db.Column(db.String(1000), nullable=False, unique=True)
+	Expense = db.Column(db.String(1000), nullable=False, unique=True)
+	Gift = db.Column(db.String(1000), nullable=False, unique=True)
+	Investment = db.Column(db.String(1000), nullable=False, unique=True)
+	Charity = db.Column(db.String(100), nullable=False, default="5% of your money has been donated to charity")
+
+# Tables for user functionality
 
 class Posts(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
