@@ -1,92 +1,80 @@
-# Prideinyourself.com
-V1.1
+"# SFIA2" 
 
-## The brief
+## The Brief:
+Create an application that generates “Objects” upon a set of predefined rules.  These “Objects” can be from whatever domain you wish.
 
-To create a CRUD application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training.
+You are required to create a micro-service orientated architecture for your application, this application must be composed of at least 4 services that work together:
 
-### Required:
->	A Trello board (or equivalent Kanban board tech) with full expansion on user stories, use cases and tasks needed to complete the project. It could also provide a record of any issues or risks that you faced creating your project.
+1) The core service – this will render the Jinja2 templates you need to interact with your application, it will also be responsible for communicating with the other 3 services, and finally for persisting some data in an SQL database.
+2/3) These will both generate a random “Object”, this object can be whatever you like as we encourage creativity in this project.
+4) This service will also create an “Object” however this “Object” must be based upon the results of service #2 + #3 using some pre-defined rules.
 
->	A relational database used to store data persistently for the project, this database needs to have at least 2 tables in it, to demonstrate your understanding, you are also required to model a relationship. 
+### Scope 
+**The requirements of the project are as follows: **
 
->	Clear Documentation from a design phase describing the architecture you will use for you project as well as a detailed Risk Assessment.
+> An Asana board (or equivalent Kanban board tech) with full expansion on tasks needed to complete the project.   
+  *This could also provide a record of any issues or risks that you faced creating your project. /*
+  
+> An Application fully integrated using the Feature-Branch model into a Version Control System which will subsequently be built through a CI server and deployed to a cloud-based virtual machine.   
+  *If a change is made to a code base, then Web hooks should be used so that Jenkins recreates and redeploys the changed application/* 
+  
+> The project must follow the Micro Services architecture that has been asked for. 
 
->	A functional CRUD application created in Python, following best practices and design principles, that meets the requirements set on your Kanban Board 
+> The project must be deployed using containerisation and an orchestration tool.
 
->	A functioning front-end website and integrated API’s, using Flask.
+> As part of the project you need to create an Ansible Playbook that will provision the environment that your application needs to run.
 
->	Code fully integrated into a Version Control System using the Feature-Branch model which will subsequently be built through a CI server and deployed to a cloud-based virtual machine.
-
-<>	Fully designed test suites for the application you are creating, as well as automated tests for validation of the application. You must provide high test coverage in your backend and provide consistent reports and evidence to support a TDD approach.
+### Constraints
+1) Kanban Board: Asana or an equivalent Kanban Board 
+2) Version Control: Git 
+3) CI Server: Jenkins 
+4) Configuration Management: Ansible
+5) Cloud server: GCP virtual machines 
+6) Containerisation: Docker 
+7) Orchestration Tool: Docker Swarm 
 
 ## The concept
+A 'Life Simulator' text game.
 
-I have been sat on the domain prideinyourself.com for over a year, with a plan to do *something* with it, though that plan has changed and evolved as I have started to work on other projects.
+There is a game I have been playing for a couple of years called 'Money Race 2'
 
-As such, I plan to create a resource which houses stories about historical LGBTQ+ figures there so that teens are able to quickly and easily find examples of role models.
+I have always been a little upset about how the numbers don't align with real life scenarios, and so I would like to program an analogue which performs the same functions but with a text interface.
 
-## The architecture
+## Draft idea
 
-For this project, I will be running a Virtual Machine (VM) via google cloud platform.
+___Service 1___
+The basic website with register/login functionality. Service 2 available as standars, service 3 behind login wall.
 
-This VM will be running Debian Linux, and from there I will be programming the webpages in html, which will be calling python functionality to talk to SQL.
+___Service 2/3___
+Comprised of the following non-star modules. These will be available regardless of whether the user is logged in or not, under 'Standard build' option.
 
-The programs and python modules used are all stored in <a href="https://github.com/GreyProgramming/flask-app/blob/master/requirements.txt">the requirements.txt doc</a>
+A page where you have the option to either create a player profile or have one randomly generated. This will set your income and expenses.
 
-## Risk assessment
+Button for random event which will pull back a random event in a table:
 
-The risk assessment document is available at:
-https://docs.google.com/spreadsheets/d/12DpUkGZ0152ZuV0DZSnLNX3tmoqrbppeXTm1YRkpS1k/edit?usp=sharing
+Rolls:
+1 - Category
+	1) Dayjob
+	2/3) Surprise expense
+	4/5) Surprise gift
+	6/7) Investment opportunity
+	8) 'Charity'
 
-17/02/2020 - Numerous system crashes including both chrome and BSODs.
-https://drive.google.com/file/d/1A9-sd0B1qiLT1Zj9ty1mQqaGHmKYDdgI/view?usp=sharing
+for 2-7, each will have 25 things that could happen,which will effect the amount of money that is in player 'account'.
 
-<!-- ## Stakeholder analysis
+The aim of the game is to get enough investments that the monthly return is over 100% of the monthly expenses on top of money coming in from day job.
 
-The stakeholder analysis document is available at:
-https://docs.google.com/document/d/11yscW6LF6Znjg37G4HJLpUCfrppOapm-UVRhJOHsnOI/edit?usp=sharing
--->
-## ERD
-
-The ERD was created using draw.io is available at:
-https://drive.google.com/file/d/11u3hhtPX3J5yBtt9x3uxw0sZ7yX8f5mE/view?usp=sharing
-
-17/02/2020 update:
-
-Updated ERD generated: https://drive.google.com/file/d/1OHQjoHsLBJ4SMFNm69zsRSY3vFUwKZDn/view?usp=sharing
-
-## Trello
-
-The trello board for the project is available at:
-https://trello.com/b/wRzLUNag/prideinyourselfcom
+___Service 4___
 
 
+## Kanban
+For this project I elected to use airtable, and contained the risk register in the project board there.
+This can be viewed at: https://airtable.com/shrBM6xlxHXKH4AWA
+The reason for this is that flexibility with regards to the layout, the ease of use and the mobile interface.
+The downside to this one is that it can't be accessed when offline.
 
-### Future possibilities
-Lesson Plans - "Like for schools to use, if you make it user friendly teachers would use that kind of thing for gay pride month as it's on the curriculum" - C.L-C
-Promotion via content creators by hosting links to their work - pivot with stonewall, podcasts & unions.
+## Docker diagram
+
+## ERD diagram
 
 
-### Update Log
-
-21/02/2020
-Port 5000 requirement removed - http://prideinyourself.com
-
-Testing script failing due to chrome driver not being able to read the Xpath. As a result, unable to perform tests and deploy then to Jenkins. 
-
-20/02/2020
-Actual functionality implemented. CSS cleaned up, redundant code removed, functionality manually tested.
-
-18/02/2020
-Users able to create account, read their name and email, update those details and delete their account. MVP attained.
-Progress branch pulled to master.
-
-17/02/2020 
-Changed the layout.html for better visuals.
-Created a new footer linking to linkedin.
-Url now points to VM when running: http://prideinyourself.com:5000/home
-
-Noted need to change the CSS as the CSS link provided by Bob is not able to create the visuals wanted.
-Need to check whether there is a print function in the home page as it is printing in the console whenever loaded.
-Need to alter users table for admin column + allow admins to delete posts from users as they are actioned.
