@@ -46,7 +46,6 @@ ___Service 1___
 The basic website with register/login functionality. Service 2 available as standars, service 3 behind login wall.
 
 ___Service 2/3___
-Comprised of the following non-star modules. These will be available regardless of whether the user is logged in or not, under 'Standard build' option.
 
 A page where you have the option to either create a player profile or have one randomly generated. This will set your income and expenses.
 
@@ -54,13 +53,13 @@ Button for random event which will pull back a random event in a table:
 
 Rolls:
 1 - Category
-	1) Dayjob
-	2/3) Surprise expense
-	4/5) Surprise gift
-	6/7) Investment opportunity
-	8) 'Charity'
+1) Dayjob
+2) Surprise expense
+3) Surprise gift
+4) Investment opportunity
+5) 'Charity'
 
-for 2-7, each will have 25 things that could happen,which will effect the amount of money that is in player 'account'.
+for 1-4, each will have 25 things that could happen,which will effect the amount of money that is in player 'account'.
 
 The aim of the game is to get enough investments that the monthly return is over 100% of the monthly expenses on top of money coming in from day job.
 
